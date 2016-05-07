@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 2.8)
-set(PROJECT "BoringMixer")
+set(PROJECT "MySaw")
 project (${PROJECT})
 
 include_directories(${SC_PATH}/include/plugin_interface)
@@ -18,4 +18,4 @@ if (CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANG)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 endif()
 
-add_library(${PROJECT} MODULE BoringMixer.cpp)
+add_library(${PROJECT} MODULE MySaw.cpp)

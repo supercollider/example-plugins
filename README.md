@@ -1,4 +1,4 @@
-This is a minimal example of a SuperCollider server plugin. It compiles a "BoringMixer" ugen that takes the average of its two audio-rate inputs.
+This is a minimal example of a SuperCollider server plugin. It compiles a "MySaw" ugen, which is a simple saw oscillator with controllable frequency and initial phase.
 
 ## Compiling
 
