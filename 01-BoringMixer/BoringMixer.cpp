@@ -5,12 +5,8 @@ static InterfaceTable *ft;
 struct BoringMixer : public Unit {
 };
 
-extern "C" {
-    void load(InterfaceTable *inTable);
-
-    void BoringMixer_next(BoringMixer *unit, int inNumSamples);
-    void BoringMixer_Ctor(BoringMixer* unit);
-};
+static void BoringMixer_next(BoringMixer *unit, int inNumSamples);
+static void BoringMixer_Ctor(BoringMixer* unit);
 
 void BoringMixer_Ctor(BoringMixer* unit) {
     SETCALC(BoringMixer_next);
