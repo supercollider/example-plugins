@@ -1,26 +1,26 @@
-This is a minimal example of a SuperCollider server plugin. It compiles a "MySaw" ugen, which is a simple saw oscillator with controllable frequency and initial phase.
+This is a series of examples demonstrating how to write SuperCollider plugins.
 
 ## Compiling
 
 Make a directory for the `cmake` build files:
 
 ```shell
-plugin-example/$ mkdir build && cd build
-plugin-example/build/$ cmake -DSC_PATH=/path/to/sc3source/ ..
+plugin-example/01-BoringMixer/$ mkdir build && cd build
+plugin-example/01-BoringMixer/build/$ cmake -DSC_PATH=/path/to/sc3source/ ..
 ```
 
 If no `SC_PATH` is provided the build system assumes the SuperCollider include files in `/usr/include/SuperCollider/`.
 
 ```shell
-plugin-example/build/$ make
-plugin-example/build/$ make install
+plugin-example/01-BoringMixer/build/$ make
+plugin-example/01-BoringMixer/build/$ make install
 ```
 
 WARNING: on OSX, if you want to install into `CMAKE_INSTALL_PREFIX`, you have to specify it by disabling the `IN_PLACE_BUILD` cmake option which defaults to ON (see below).
 
 ## Installing
 
-Copy the `plugin-example` folder to your Extensions folder. You can find out which one that is by evaluating
+Copy the folder you want to install to your Extensions folder. You can find out which one that is by evaluating
 
 ```
 Platform.userExtensionDir
