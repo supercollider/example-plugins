@@ -10,6 +10,7 @@ static void BoringMixer_Ctor(BoringMixer* unit);
 
 void BoringMixer_Ctor(BoringMixer* unit) {
     SETCALC(BoringMixer_next);
+    BoringMixer_next(unit, 1);
 }
 
 void BoringMixer_next(BoringMixer* unit, int inNumSamples) {
