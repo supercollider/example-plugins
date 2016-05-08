@@ -16,13 +16,11 @@ plugin-example/build/$ make
 plugin-example/build/$ make install
 ```
 
-On OSX, the plugins will end up in `sc3-plugins/build/SC3plugins`.
-
 WARNING: on OSX, if you want to install into `CMAKE_INSTALL_PREFIX`, you have to specify it by disabling the `IN_PLACE_BUILD` cmake option which defaults to ON (see below).
 
 ## Installing
 
-Copy the `SC3plugins` folder to your Extensions folder. You can find out which one that is by evaluating
+Copy the `plugin-example` folder to your Extensions folder. You can find out which one that is by evaluating
 
 ```
 Platform.userExtensionDir
