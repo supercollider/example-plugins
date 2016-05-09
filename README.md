@@ -1,4 +1,6 @@
-This is a series of examples demonstrating how to write SuperCollider plugins.
+This repository a series of examples demonstrating how to write server plugins for [SuperCollider](https://github.com/supercollider/supercollider) (not to be confused with quarks, which are libraries for the language).
+
+Beyond this repository, the reader is encouraged to look at [sc3-plugins](https://github.com/supercollider/sc3-plugins) for more complex, real-world examples.
 
 ## Compiling
 
