@@ -17,11 +17,11 @@ static void BoringMixer_Ctor(BoringMixer* unit);
 // it MUST be named "PluginName_Ctor", and the argument must be "unit."
 void BoringMixer_Ctor(BoringMixer* unit) {
     // in later examples, we will initialize state variables here.
-    
+
     // set a calculation function. for now, we only have one calculation function.
     SETCALC(BoringMixer_next);
     // calculate one sample of output.
-    // this allows plugging into other ugens with initial-rate inputs 
+    // this allows plugging into other ugens with initial-rate inputs
     BoringMixer_next(unit, 1);
 }
 
@@ -30,8 +30,11 @@ void BoringMixer_Ctor(BoringMixer* unit) {
 // Don't change the names of the arguments, or the helper macros won't work.
 void BoringMixer_next(BoringMixer* unit, int inNumSamples) {
 
-    // IN and OUT are helper macros that return audio-rate input and output buffers.
+    // IN and OUT are helper macros that return audio-rate input and output buffers. These are known as "wire buffers."
     // In old ugens you'll see ZIN and ZOUT, which are not recommended.
+
+    // scsynth saves memory by aliasing wire buffers. In this case, "out" and "left" are the same. You should either
+    // be mindful of this behavior or turn it off in the PluginLoad section.
     float *left = IN(0); // first input
     float *right = IN(1); // second input
     float *out = OUT(0); // first output
@@ -48,5 +51,6 @@ PluginLoad(BoringMixerUGens) {
     ft = inTable; // store pointer to InterfaceTable
     // DefineSimpleUnit is one of four macros defining different kinds of ugens.
     // In later examples involving memory allocation, we'll see DefineDtorUnit.
+    // You can disable aliasing by using DefineSimpleCantAliasUnit and DefineDtorCantAliasUnit.
     DefineSimpleUnit(BoringMixer);
 }
