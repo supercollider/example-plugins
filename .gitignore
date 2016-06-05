@@ -5,7 +5,6 @@ build
 *~
 *.orig
 
-
 CMakeCache.txt
 CMakeFiles
 CMakeScripts
@@ -15,3 +14,7 @@ install_manifest.txt
 cmake_uninstall.cmake
 CPackConfig.cmake
 CPackSourceConfig.cmake
+
+*.so
+*.scx
+*.dll
