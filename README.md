@@ -1,6 +1,13 @@
-This repository a series of examples demonstrating how to write server plugins for [SuperCollider](https://github.com/supercollider/supercollider) (not to be confused with quarks, which are libraries for the language).
+This repository a series of examples demonstrating how to write UGens for [SuperCollider](https://github.com/supercollider/supercollider) (not to be confused with quarks, which are libraries for the language). The [Writing Unit Generators](http://doc.sccode.org/Guides/WritingUGens.html) helpfile is a comprehensive tutorial. Chapter 25 of [the SuperCollider Book](http://www.supercolliderbook.net/) is also a useful resource, although the build instructions are outdated.
 
 Beyond this repository, the reader is encouraged to look at [sc3-plugins](https://github.com/supercollider/sc3-plugins) for more complex, real-world examples.
+
+## Directory
+
+- 01a-BoringMixer -- minimal example of a plugin
+- 01b-BoringMixer -- using a newer C++ wrapper
+- 02-MySaw -- introduces multiple calculation functions and state variables
+- 03-AnalogEcho -- introduces memory allocation and cubic interpolation
 
 ## Compiling
 
