@@ -18,7 +18,11 @@ plugin-example/01-BoringMixer/$ mkdir build && cd build
 plugin-example/01-BoringMixer/build/$ cmake -DSC_PATH=/path/to/sc3source/ ..
 ```
 
-If no `SC_PATH` is provided the build system assumes the SuperCollider include files in `/usr/include/SuperCollider/`.
+Here, `/path/to/sc3source/` is the path to a directory of the SuperCollider *source code*. The source code version should match your SuperCollider app version. Slight differences will probably be tolerated, but if they're too far apart you will get an "API version mismatch" error when you boot the server.
+
+The path should contain a file at `include/plugin_interface/SC_PlugIn.h`. If you get a warning that `SC_PlugIn.h` could not be found, then `SC_PATH` is not set correctly.
+
+If no `SC_PATH` is provided, the build system assumes the SuperCollider include files in `/usr/include/SuperCollider/`.
 
 ```shell
 plugin-example/01-BoringMixer/build/$ make
@@ -29,16 +33,16 @@ WARNING: on OSX, if you want to install into `CMAKE_INSTALL_PREFIX`, you have to
 
 ## Installing
 
-Copy the folder you want to install to your Extensions folder. You can find out which one that is by evaluating
+You can install each folder -- or the entire repository -- as you would a quark: `Quarks.gui` => `Install a folder`.
+
+Alternatively, you can copy, move, or symbolic link the folder into your Extensions folder. You can find out which one that is by evaluating
 
 ```
 Platform.userExtensionDir
 ```
 
-from within SuperCollider. Alternatively, you may install the extensions system-wide by copying to
+from within SuperCollider. Alternatively, you may install the plugin(s) system-wide by copying to
 
 ```
 Platform.systemExtensionDir
 ```
-
-Tip: On OSX and Linux, it might be more convenient to use a symbolic link rather than copying or moving the directory.
