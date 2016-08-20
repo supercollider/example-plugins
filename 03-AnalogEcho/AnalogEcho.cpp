@@ -43,14 +43,22 @@ void AnalogEcho_Ctor(AnalogEcho* unit) {
     // Allocate the buffer. Do NOT use malloc!
     // SuperCollider provides special real-time-safe allocation and freeing functions.
     unit->buf = (float*)RTAlloc(unit->mWorld, unit->bufsize * sizeof(float));
+
+    // This check makes sure that RTAlloc succeeded. (It might fail if there's not enough memory.)
+    // If you don't do this check properly then YOU CAN CRASH THE SERVER!
+    // A lot of ugens in core and sc3-plugins fail to do this. Don't follow their example.
     if (unit->buf == NULL) {
+        // Avoid retaining AnalogEcho_next as the calculation function.
         SETCALC(ft->fClearUnitOutputs);
         ClearUnitOutputs(unit, 1);
 
         if(unit->mWorld->mVerbosity > -2) {
             Print("Failed to allocate memory for AnalogEcho ugen.\n");
         }
+
+        return;
     }
+
     // Fill the buffer with zeros.
     memset(unit->buf, 0, unit->bufsize * sizeof(float));
 
