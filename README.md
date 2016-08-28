@@ -24,12 +24,13 @@ The path should contain a file at `include/plugin_interface/SC_PlugIn.h`. If you
 
 If no `SC_PATH` is provided, the build system assumes the SuperCollider include files in `/usr/include/SuperCollider/`.
 
+After setting `SC_PATH`, simply build using `make`:
+
 ```shell
 plugin-example/01-BoringMixer/build/$ make
-plugin-example/01-BoringMixer/build/$ make install
 ```
 
-WARNING: on OSX, if you want to install into `CMAKE_INSTALL_PREFIX`, you have to specify it by disabling the `IN_PLACE_BUILD` cmake option which defaults to ON (see below).
+If compilation succeeds, on OSX this will produce a "shared library" file ending in `.scx`, and on Linux `.so`.
 
 ## Installing
 
@@ -46,3 +47,9 @@ from within SuperCollider. Alternatively, you may install the plugin(s) system-w
 ```
 Platform.systemExtensionDir
 ```
+
+## Development workflow
+
+If you change your source file(s) or `CMakeLists.txt`, simply use `make` to recompile the shared library. You will need to restart scsynth/supernova for your changes to take effect.
+
+If you change your `.sc` class file, you will need to restart sclang.
