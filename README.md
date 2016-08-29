@@ -46,6 +46,8 @@ You can install each folder -- or the entire repository -- as you would a quark:
 
 Alternatively, you can copy, move, or symbolic link the folder into your Extensions folder. You can find out which one that is by evaluating `Platform.userExtensionDir` in sclang. You can install the plugin(s) system-wide by copying to `Platform.systemExtensionDir`.
 
+If you're not using sclang, the installation method varies. Ask the developer(s) of the client if you're not sure how.
+
 ## Development workflow
 
 If you change your source file(s) or `CMakeLists.txt`, simply use `make` to recompile the shared library. You will need to restart scsynth/supernova for your changes to take effect.
