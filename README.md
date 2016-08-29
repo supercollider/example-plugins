@@ -1,4 +1,8 @@
-This repository a series of examples demonstrating how to write UGens for [SuperCollider](https://github.com/supercollider/supercollider) (not to be confused with quarks, which are libraries for the language). The [Writing Unit Generators](http://doc.sccode.org/Guides/WritingUGens.html) helpfile is a comprehensive tutorial. Chapter 25 of [the SuperCollider Book](http://www.supercolliderbook.net/) is also a useful resource, although the build instructions are outdated.
+# SuperCollider Example Plugins
+
+This repository demonstrates how to write UGens for [SuperCollider](https://github.com/supercollider/supercollider) using a series of examples. Custom UGens are packaged in server plugins. Plugins are not to be confused with quarks, which are libraries for the language.
+
+This supplements the [Writing Unit Generators](http://doc.sccode.org/Guides/WritingUGens.html) helpfile. Chapter 25 of [the SuperCollider Book](http://www.supercolliderbook.net/) is also a useful resource, although the build instructions are outdated.
 
 There is a lot of conflicting material out there for UGen building. This is the official repository and should be the most up to date.
 
@@ -13,7 +17,7 @@ Beyond this repository, the reader is encouraged to look at [sc3-plugins](https:
 
 ## Compiling
 
-This is how you build one of the examples in this directory. The examples are kept separate with duplicated code so that you can simply copy out a directory to start your own ugen. **Currently, this build system is missing two things: Windows and supernova. Sorry, we're working on it.**
+This is how you build one of the examples in this directory. The examples are kept separate with duplicated code so that you can simply copy out a directory to start your own ugen. **Currently, this build system is missing two things: Windows and supernova. Sorry, we're working on it...**
 
 CMake dumps a lot of files into your working directory, so you should always start by creating the `build/` directory:
 
@@ -35,7 +39,7 @@ The path should contain a file at `include/plugin_interface/SC_PlugIn.h`. If you
 CMake will remember your `SC_PATH`, so you only need to run that once. After that, simply build using `make`:
 
 ```shell
-example-plugins/01-BoringMixer/build/$ make
+example-plugins/01a-BoringMixer/build/$ make
 ```
 
 This will produce a "shared library" file ending in `.scx`. On Linux, the extension is `.so`.
