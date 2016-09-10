@@ -21,7 +21,7 @@ void BoringMixer_Ctor(BoringMixer* unit) {
     // set a calculation function. for now, we only have one calculation function.
     SETCALC(BoringMixer_next);
     // calculate one sample of output.
-    // this allows plugging into other ugens with initial-rate inputs
+    // if you don't do this, downstream ugens might access garbage memory in their Ctor functions.
     BoringMixer_next(unit, 1);
 }
 
