@@ -26,7 +26,7 @@ example-plugins/01a-BoringMixer/$ mkdir build
 example-plugins/01a-BoringMixer/$ cd build
 ```
 
-Next, we run CMake and tell it where the SuperCollider headers are to be found:
+Next, we run CMake and tell it where the SuperCollider headers are to be found (don't forget the `..`!):
 
 ```shell
 example-plugins/01a-BoringMixer/build/$ cmake -DSC_PATH=/path/to/sc3source/ ..
