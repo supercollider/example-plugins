@@ -17,6 +17,10 @@ Beyond this repository, the reader is encouraged to look at [sc3-plugins](https:
 
 ## Compiling
 
+Before you can compile any plugin, you will need a copy of the SuperCollider *source code* (NOT the app itself). The source code version should match your SuperCollider app version. Slight differences will probably be tolerated, but if they're too far apart you will get an "API version mismatch" error when you boot the server.
+
+You will not need to recompile SuperCollider itself. You only need the source code to get the C++ headers.
+
 This is how you build one of the examples in this directory. The examples are kept separate with duplicated code so that you can simply copy out a directory to start your own ugen. **Currently, this build system is missing two things: Windows and supernova. Sorry, we're working on it...**
 
 CMake dumps a lot of files into your working directory, so you should always start by creating the `build/` directory:
@@ -25,14 +29,13 @@ CMake dumps a lot of files into your working directory, so you should always sta
 example-plugins/01a-BoringMixer/$ mkdir build
 example-plugins/01a-BoringMixer/$ cd build
 ```
-
 Next, we run CMake and tell it where the SuperCollider headers are to be found (don't forget the `..`!):
 
 ```shell
 example-plugins/01a-BoringMixer/build/$ cmake -DSC_PATH=/path/to/sc3source/ ..
 ```
 
-Here, `/path/to/sc3source/` is the path to a directory of the SuperCollider *source code* (NOT the app itself). The source code version should match your SuperCollider app version. Slight differences will probably be tolerated, but if they're too far apart you will get an "API version mismatch" error when you boot the server.
+Here, `/path/to/sc3source/` is the path to the source code. Once again, this is the *source code*, not the app itself.
 
 The path should contain a file at `include/plugin_interface/SC_PlugIn.h`. If you get a warning that `SC_PlugIn.h` could not be found, then `SC_PATH` is not set correctly. If no `SC_PATH` is provided, the build system assumes the SuperCollider include files in `/usr/include/SuperCollider/`.
 
