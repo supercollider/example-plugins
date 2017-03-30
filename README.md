@@ -49,9 +49,7 @@ This will produce a "shared library" file ending in `.scx`. On Linux, the extens
 
 ## Installing
 
-You can install each folder -- or the entire repository -- as you would a quark: `Quarks.gui` => `Install a folder`.
-
-Alternatively, you can copy, move, or symbolic link the folder into your Extensions folder. You can find out which one that is by evaluating `Platform.userExtensionDir` in sclang. You can install the plugin(s) system-wide by copying to `Platform.systemExtensionDir`.
+Copy, move, or symbolic link the folder into your Extensions folder. You can find out which one that is by evaluating `Platform.userExtensionDir` in sclang. You can install the plugin(s) system-wide by copying to `Platform.systemExtensionDir`.
 
 If you're not using sclang, the installation method varies. Ask the developer(s) of the client if you're not sure how.
 
