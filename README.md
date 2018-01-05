@@ -85,7 +85,7 @@ If you're not using sclang, the installation method varies. Ask the developer(s)
 
 ## Development workflow
 
-In order to start developing a new UGen, make a copy of one of the example's directory. Change the `.cpp` filename, as well as the name and contents of the corresponding `.sc` file, and update the beginning of `CMakeLists.txt` with your new `.cpp` filename. Then you're ready to work on the code. If you are using `git`
+In order to start developing a new UGen, make a copy of one of the example's directory. Change the `.cpp` filename, as well as the name and contents of the corresponding `.sc` file, and update the beginning of `CMakeLists.txt` with your new `.cpp` filename. Then you're ready to work on the code. If you are using Git, you may also want to copy over the `.gitignore` in the root of this project.
 
 If you change your source file(s) or `CMakeLists.txt`, simply use `make` to recompile the shared library. You will need to restart scsynth/supernova for your changes to take effect.
 
