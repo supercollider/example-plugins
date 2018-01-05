@@ -19,9 +19,13 @@ Beyond this repository, the reader is encouraged to look at [sc3-plugins](https:
 
 This is how you build one of the examples in this directory. The examples are kept separate with duplicated code so that you can simply copy out a directory to start your own ugen (see [Development workflow](#development-workflow)). **Currently, this build system is missing Windows. Sorry, we're working on it...**
 
+### Step 1: Obtain header files
+
 Before you can compile any plugin, you will need a copy of the SuperCollider *source code* (NOT the app itself). The source code version should match your SuperCollider app version. Slight differences will probably be tolerated, but if they're too far apart you will get an "API version mismatch" error when you boot the server.
 
 You will **not** need to recompile SuperCollider itself in order to get a plugin working. You only need the source code to get the C++ headers.
+
+### Step 2: Create build directory and set `SC_PATH`
 
 CMake dumps a lot of files into your working directory, so you should always start by creating the `build/` directory:
 
@@ -39,13 +43,28 @@ Here, `/path/to/sc3source/` is the path to the source code. Once again, this is 
 
 The path should contain a file at `include/plugin_interface/SC_PlugIn.h`. If you get a warning that `SC_PlugIn.h` could not be found, then `SC_PATH` is not set correctly. If no `SC_PATH` is provided, the build system assumes the SuperCollider include files in `/usr/include/SuperCollider/`.
 
-CMake will remember your `SC_PATH`, so you only need to run that once.
+CMake will remember your `SC_PATH`, so you only need to run that once per plugin.
 
-If you also want to build a UGen for Supernova, then you need to set the 'SUPERNOVA' flag. The CMake command would then look like this:
+### Step 3: Set flags (optional)
+
+If you don't plan on using a debugger, it's advisable to build in release mode so that the compiler optimizes:
 
 ```shell
-example-plugins/01a-BoringMixer/build/$ cmake -DSC_PATH=/path/to/sc3source/ -DSUPERNOVA=ON ..
+example-plugins/01a-BoringMixer/build/$ cmake -DCMAKE_BUILD_TYPE=RELEASE ..
 ```
+
+Switch back to debug mode with `-DCMAKE_BUILD_TYPE=DEBUG`.
+
+If you also want to build the UGen for Supernova, then you need to set the 'SUPERNOVA' flag:
+
+```shell
+example-plugins/01a-BoringMixer/build/$ cmake -DSUPERNOVA=ON ..
+```
+
+Again, all these flags are persistent, and you only need to run them once.
+
+### Step 4: Build it!
+
 After that, simply build using `make`:
 
 ```shell
@@ -53,6 +72,8 @@ example-plugins/01a-BoringMixer/build/$ make
 ```
 
 This will produce a "shared library" file ending in `.scx`. On Linux, the extension is `.so`.
+
+You can freely alternate between steps 3 and 4. If you decide to go back and change some CMake flags, just hit `make` again.
 
 ## Installing
 
@@ -63,7 +84,8 @@ Please note that on macOS Supernova is more picky about location of UGens (as of
 If you're not using sclang, the installation method varies. Ask the developer(s) of the client if you're not sure how.
 
 ## Development workflow
-In order to start developing a new UGen, make a copy of one of the example's directory. Change the `.cpp` filename, as well as the name and contents of the corresponding `.sc` file, and update the beginning of `CMakeLists.txt` with your new `.cpp` filename. Then you're ready to work on the code.
+
+In order to start developing a new UGen, make a copy of one of the example's directory. Change the `.cpp` filename, as well as the name and contents of the corresponding `.sc` file, and update the beginning of `CMakeLists.txt` with your new `.cpp` filename. Then you're ready to work on the code. If you are using `git`
 
 If you change your source file(s) or `CMakeLists.txt`, simply use `make` to recompile the shared library. You will need to restart scsynth/supernova for your changes to take effect.
 
