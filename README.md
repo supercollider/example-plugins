@@ -58,7 +58,7 @@ This will produce a "shared library" file ending in `.scx`. On Linux, the extens
 
 Copy, move, or symbolic link the folder into your Extensions folder. You can find out which one that is by evaluating `Platform.userExtensionDir` in sclang. You can install the plugin(s) system-wide by copying to `Platform.systemExtensionDir`.
 
-Please note that currently (as of January 2018) Supernova is more picky about location of UGens on macOS. They need to be placed in a subdirectory called `plugins` inside the above mentioned extension directory. This pertains only to the UGen file (`.scx`), not the `.sc` class file.
+Please note that on macOS Supernova is more picky about location of UGens (as of January 2018). They need to be placed in a subdirectory called `plugins` inside the above mentioned Extensions folder. This pertains only to the UGen file (`.scx`), not the `.sc` class file.
 
 If you're not using sclang, the installation method varies. Ask the developer(s) of the client if you're not sure how.
 
