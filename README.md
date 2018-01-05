@@ -17,7 +17,7 @@ Beyond this repository, the reader is encouraged to look at [sc3-plugins](https:
 
 ## Compiling
 
-This is how you build one of the examples in this directory. The examples are kept separate with duplicated code so that you can simply copy out a directory to start your own ugen. **Currently, this build system is missing two things: Windows and supernova. Sorry, we're working on it...**
+This is how you build one of the examples in this directory. The examples are kept separate with duplicated code so that you can simply copy out a directory to start your own ugen (see [Development workflow](#development-workflow)). **Currently, this build system is missing Windows. Sorry, we're working on it...**
 
 Before you can compile any plugin, you will need a copy of the SuperCollider *source code* (NOT the app itself). The source code version should match your SuperCollider app version. Slight differences will probably be tolerated, but if they're too far apart you will get an "API version mismatch" error when you boot the server.
 
@@ -39,7 +39,14 @@ Here, `/path/to/sc3source/` is the path to the source code. Once again, this is 
 
 The path should contain a file at `include/plugin_interface/SC_PlugIn.h`. If you get a warning that `SC_PlugIn.h` could not be found, then `SC_PATH` is not set correctly. If no `SC_PATH` is provided, the build system assumes the SuperCollider include files in `/usr/include/SuperCollider/`.
 
-CMake will remember your `SC_PATH`, so you only need to run that once. After that, simply build using `make`:
+CMake will remember your `SC_PATH`, so you only need to run that once.
+
+If you also want to build a UGen for Supernova, then you need to set the 'SUPERNOVA' flag. The CMake command would then look like this:
+
+```shell
+example-plugins/01a-BoringMixer/build/$ cmake -DSC_PATH=/path/to/sc3source/ -DSUPERNOVA=ON ..
+```
+After that, simply build using `make`:
 
 ```shell
 example-plugins/01a-BoringMixer/build/$ make
@@ -51,9 +58,12 @@ This will produce a "shared library" file ending in `.scx`. On Linux, the extens
 
 Copy, move, or symbolic link the folder into your Extensions folder. You can find out which one that is by evaluating `Platform.userExtensionDir` in sclang. You can install the plugin(s) system-wide by copying to `Platform.systemExtensionDir`.
 
+Please note that currently (as of January 2018) Supernova is more picky about location of UGens on macOS. They need to be placed in a subdirectory called `plugins` inside the above mentioned extension directory. This pertains only to the UGen file (`.scx`), not the `.sc` class file.
+
 If you're not using sclang, the installation method varies. Ask the developer(s) of the client if you're not sure how.
 
 ## Development workflow
+In order to start developing a new UGen, make a copy of one of the example's directory. Change the `.cpp` filename, as well as the name and contents of the corresponding `.sc` file, and update the beginning of `CMakeLists.txt` with your new `.cpp` filename. Then you're ready to work on the code.
 
 If you change your source file(s) or `CMakeLists.txt`, simply use `make` to recompile the shared library. You will need to restart scsynth/supernova for your changes to take effect.
 
