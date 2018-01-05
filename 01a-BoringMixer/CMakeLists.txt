@@ -1,15 +1,32 @@
+set(FILENAME "BoringMixer.cpp") #specify the .cpp file here
 cmake_minimum_required (VERSION 2.8)
-set(PROJECT "BoringMixer")
+get_filename_component(PROJECT ${FILENAME} NAME_WE) #automatically sets project name from the filename
+# set(PROJECT "my_name") #alternatively set project name manually
+message(STATUS "Project name is ${PROJECT}")
 project (${PROJECT})
 
 include_directories(${SC_PATH}/include/plugin_interface)
 include_directories(${SC_PATH}/include/common)
 include_directories(${SC_PATH}/common)
 
-
 set(CMAKE_SHARED_MODULE_PREFIX "")
 if(APPLE OR WIN32)
 set(CMAKE_SHARED_MODULE_SUFFIX ".scx")
+endif()
+
+option(SUPERNOVA "Build plugins for supernova" OFF)
+if (SUPERNOVA)
+    include_directories(${SC_PATH}/external_libraries/nova-tt)
+    # actually just boost.atomic
+    include_directories(${SC_PATH}/external_libraries/boost)
+    include_directories(${SC_PATH}/external_libraries/boost_lockfree)
+    include_directories(${SC_PATH}/external_libraries/boost-lockfree)
+endif()
+
+option(CPP11 "Build with c++11." ON)
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+	set(CMAKE_COMPILER_IS_CLANG 1)
 endif()
 
 # The below monstrosity sets compiler flags for SSE (Streaming SIMD Extensions). Among many other things, SSE protects
@@ -71,4 +88,9 @@ if(MINGW)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mstackrealign")
 endif()
 
-add_library(${PROJECT} MODULE BoringMixer.cpp)
+add_library(${PROJECT} MODULE ${FILENAME})
+if(SUPERNOVA)
+    add_library(${PROJECT}_supernova MODULE ${FILENAME})
+    set_property(TARGET ${PROJECT}_supernova
+                 PROPERTY COMPILE_DEFINITIONS SUPERNOVA)
+endif()
