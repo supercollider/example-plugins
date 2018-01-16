@@ -79,8 +79,6 @@ You can freely alternate between steps 3 and 4. If you decide to go back and cha
 
 Copy, move, or symbolic link the folder into your Extensions folder. You can find out which one that is by evaluating `Platform.userExtensionDir` in sclang. You can install the plugin(s) system-wide by copying to `Platform.systemExtensionDir`.
 
-Please note that on macOS Supernova is more picky about location of UGens (as of January 2018). They need to be placed in a subdirectory called `plugins` inside the above mentioned Extensions folder. This pertains only to the UGen file (`.scx`), not the `.sc` class file.
-
 If you're not using sclang, the installation method varies. Ask the developer(s) of the client if you're not sure how.
 
 ## Development workflow
