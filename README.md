@@ -21,9 +21,12 @@ This is how you build one of the examples in this directory. The examples are ke
 
 ### Step 1: Obtain header files
 
-Before you can compile any plugin, you will need a copy of the SuperCollider *source code* (NOT the app itself). The source code version should match your SuperCollider app version. Slight differences will probably be tolerated, but if they're too far apart you will get an "API version mismatch" error when you boot the server.
+Before you can compile any plugin, you will need a copy of the SuperCollider *source code* (NOT the app itself). 
+Source code tarballs can be downloaded from the [SuperCollider release page](https://github.com/supercollider/supercollider/releases). If you are on Linux, it's okay (and preferable) to use the Linux source tarball.
 
 You will **not** need to recompile SuperCollider itself in order to get a plugin working. You only need the source code to get the C++ headers.
+
+The source code version should roughly match your SuperCollider app version. This is due to occasional breaking changes in the plugin "API" (technically the ABI), which will occur only in 3.x releases. These breaking changes will not require modification to your plugin's source code, but compiled plugin binaries will need to be recompiled. If the server tries to load an incompatible plugin, it will give the "API version mismatch" error message.
 
 ### Step 2: Create build directory and set `SC_PATH`
 
@@ -33,6 +36,7 @@ CMake dumps a lot of files into your working directory, so you should always sta
 example-plugins/01a-BoringMixer/$ mkdir build
 example-plugins/01a-BoringMixer/$ cd build
 ```
+
 Next, we run CMake and tell it where the SuperCollider headers are to be found (don't forget the `..`!):
 
 ```shell
@@ -41,7 +45,7 @@ example-plugins/01a-BoringMixer/build/$ cmake -DSC_PATH=/path/to/sc3source/ ..
 
 Here, `/path/to/sc3source/` is the path to the source code. Once again, this is the *source code*, not the app itself.
 
-The path should contain a file at `include/plugin_interface/SC_PlugIn.h`. If you get a warning that `SC_PlugIn.h` could not be found, then `SC_PATH` is not set correctly. If no `SC_PATH` is provided, the build system assumes the SuperCollider include files in `/usr/include/SuperCollider/`.
+To make sure you have the right path, check to ensure that it contains a file at `include/plugin_interface/SC_PlugIn.h`. If you get a warning that `SC_PlugIn.h` could not be found, then `SC_PATH` is not set correctly.
 
 CMake will remember your `SC_PATH`, so you only need to run that once per plugin.
 
@@ -61,11 +65,11 @@ If you also want to build the UGen for Supernova, then you need to set the 'SUPE
 example-plugins/01a-BoringMixer/build/$ cmake -DSUPERNOVA=ON ..
 ```
 
-Again, all these flags are persistent, and you only need to run them once.
+Again, all these flags are persistent, and you only need to run them once. If something is messed up, you can trash the `build/` directory and start again.
 
 ### Step 4: Build it!
 
-After that, simply build using `make`:
+After that, make sure you're in the build directory, and call `make`:
 
 ```shell
 example-plugins/01a-BoringMixer/build/$ make
