@@ -26,7 +26,7 @@ Source code tarballs can be downloaded from the [SuperCollider release page](htt
 
 You will **not** need to recompile SuperCollider itself in order to get a plugin working. You only need the source code to get the C++ headers.
 
-The source code version should roughly match your SuperCollider app version. This is due to occasional breaking changes in the plugin "API" (technically the ABI), which will occur only in 3.x releases. These breaking changes will not require modification to your plugin's source code, but compiled plugin binaries will need to be recompiled. If the server tries to load an incompatible plugin, it will give the "API version mismatch" error message.
+The source code version should roughly match your SuperCollider app version. For example, headers from any 3.9.x patch release will produce plugins compatible with any 3.9.x version, but not 3.8. This is due to occasional breaking changes in the plugin "API" (technically the ABI), which will occur only in 3.x releases. These breaking changes will not require modification to your plugin's source code, but compiled plugin binaries will need to be recompiled. If the server tries to load an incompatible plugin, it will give the "API version mismatch" error message.
 
 ### Step 2: Create build directory and set `SC_PATH`
 
