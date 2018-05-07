@@ -29,14 +29,6 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 	set(CMAKE_COMPILER_IS_CLANG 1)
 endif()
 
-# The below monstrosity sets compiler flags for SSE (Streaming SIMD Extensions). Among many other things, SSE protects
-# against denormal numbers, which are known to cause glitchy audio in some cases.
-
-# Some processors do not support SSE and will produce errors if you try to add SSE flags, so we also have to introduce
-# conditional logic to guard against those errors.
-
-# It's a real mess, and generally there's no need to touch it :)
-
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANG)
     add_definitions(-fvisibility=hidden)
 
@@ -77,10 +69,11 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANG)
         add_definitions(-march=native)
     endif()
 
-    # Plugin headers require C++11, which must be explicitly enabled for gcc and clang.
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-    if(CMAKE_COMPILER_IS_CLANG)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+    if(CPP11)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+        if(CMAKE_COMPILER_IS_CLANG)
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+        endif()
     endif()
 endif()
 if(MINGW)

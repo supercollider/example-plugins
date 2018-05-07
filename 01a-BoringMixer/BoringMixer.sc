@@ -1,4 +1,4 @@
-BoringMixer : UGen {
+BoringMixer2 : UGen {
     *ar { |left, right|
         ^this.multiNew('audio', left, right);
     }
