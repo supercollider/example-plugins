@@ -13,6 +13,7 @@ Beyond this repository, the reader is encouraged to look at [sc3-plugins](https:
 - 01a-BoringMixer -- minimal example of a plugin
 - 01b-BoringMixer -- using a newer C++ wrapper
 - 02-MySaw -- introduces multiple calculation functions and state variables
+- 02b-MySaw -- using a newer C++ wrapper
 - 03-AnalogEcho -- introduces memory allocation and cubic interpolation
 
 ## Compiling
