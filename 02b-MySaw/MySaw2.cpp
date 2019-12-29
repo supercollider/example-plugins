@@ -131,6 +131,6 @@ PluginLoad(MySaw2UGens)
 
     // registerUnit takes the place of the Define*Unit functions. It automatically checks for the presence of a
     // destructor function.
-    // However, it does not seem to be possible to disable buffer aliasing with the C++ header.
-    registerUnit<MySaw2>(ft, "MySaw2");
+    // starting from version 3.11 it also allows to disable buffer aliasing
+    registerUnit<MySaw2>(ft, "MySaw2", false);
 }
